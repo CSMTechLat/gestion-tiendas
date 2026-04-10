@@ -115,7 +115,7 @@ Punto d venta para abarrotes.
 -Impresión de tickets.
 
 
-
+````
 BD:
 
 --Usuarios--
@@ -192,4 +192,4 @@ BD:
 -
 
 
-
+````
