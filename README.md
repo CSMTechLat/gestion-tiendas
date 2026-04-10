@@ -1,118 +1,74 @@
-🛒 GestiónVentas - Punto de Venta para Abarrotes
-GestiónVentas es una aplicación de escritorio moderna desarrollada con .NET MAUI, diseñada para optimizar la operación de negocios de abarrotes. Permite un control total sobre el inventario, ventas multicanal (mayoreo/menudeo) y una gestión robusta de usuarios basada en roles.
+# 🛒 GestiónVentas - Punto de Venta para Abarrotes
 
-🚀 Características Principales
-📦 Gestión de Inventario
-Control de Stock: Registro de entradas y salidas de mercancía en tiempo real.
+**GestiónVentas** es una aplicación de escritorio robusta y escalable diseñada para la administración integral de tiendas de abarrotes. Construida con **.NET MAUI** y **PostgreSQL**, ofrece una experiencia multiusuario con control granular de permisos.
 
-Catálogo Flexible: Organización por marcas, categorías y unidades de medida.
+---
 
-Precios Dinámicos: Cambio rápido de precios y gestión de catálogos para actualización masiva.
+## 🚀 Características Principales
 
-💰 Ventas y Logística
-Modos de Venta: Soporte para venta al mayoreo y menudeo.
+* **Ventas Versátiles:** Soporte para venta al **mayoreo y menudeo**.
+* **Gestión de Inventarios:** Control estricto de entradas, salidas y existencias.
+* **Facturación Local:** Generación de notas de venta e impresión de tickets físicos.
+* **Catálogo Dinámico:** Gestión de productos por marcas, categorías y unidades de medida.
+* **Logística y Reportes:** Módulos de seguimiento de mercancía y reportes detallados para la toma de decisiones.
+* **Seguridad:** Sistema de autenticación y autorización basado en roles (RBAC).
 
-Comprobantes: Generación de notas de venta e impresión de tickets.
+---
 
-Logística: Módulo integrado para el seguimiento y movimiento de mercancías.
+## 🛠️ Stack Tecnológico
 
-🔐 Seguridad y Multiusuarios
-Acceso Controlado: Sistema de login seguro.
+* **Interfaz:** .NET MAUI (Desktop)
+* **Lenguaje:** C#
+* **Base de Datos:** PostgreSQL
+* **Arquitectura:** Multiusuario con control de acceso por roles.
 
-RBAC (Role-Based Access Control): Control de acceso basado en roles (Admin, Gerente, Cajero, Almacenista).
+---
 
-Permisos Granulares: Restricción de acciones específicas (Crear, Leer, Actualizar, Borrar) por módulo.
+## 🗄️ Diseño de Base de Datos (Esquema)
 
-🛠️ Stack Tecnológico
-Frontend: .NET MAUI (Desktop App).
+### 🔐 Seguridad y Acceso
+El sistema utiliza una estructura de permisos jerárquica:
 
-Lenguaje: C# 12 / .NET 8.
+| Tabla | Campos Clave |
+| :--- | :--- |
+| **Usuarios** | `usuario`, `contraseña`, `fk_rol`, `activo` |
+| **Roles** | `Admin`, `Gerente`, `Cajero`, `Almacenista` |
+| **Permisos** | CRUD de Usuarios, Ventas, Reportes, Productos, Precios y Promociones. |
 
-Base de Datos: PostgreSQL.
+### 📦 Catálogo de Productos
+Estructura relacional para la gestión de mercancía:
+* **Productos:** `id`, `barcode`, `nombre_producto`, `contenido`.
+* **Relaciones:** Vincualción con `fk_marca`, `fk_categoria` y `fk_unidad`.
 
-ORM: Entity Framework Core / Dapper (opcional).
+---
 
-Reportes: Generación de reportes PDF/Excel para auditorías.
+## 🔑 Matriz de Permisos
 
-🗄️ Estructura de la Base de Datos
-El sistema utiliza una arquitectura relacional en PostgreSQL para garantizar la integridad de los datos.
+El sistema permite configurar acciones específicas por rol:
 
-Seguridad y Usuarios
-Usuarios: Gestión de credenciales y estado de cuenta.
+* **Ventas:** Crear, Leer, Cancelar.
+* **Inventarios:** Reportes, Creación y Eliminación.
+* **Productos:** Gestión completa (CRUD).
+* **Precios:** Actualización y control de catálogos.
+* **Promociones:** Gestión de ofertas temporales.
 
-Roles: Definición de perfiles (Admin, Gerente, Cajero, Almacenista).
+---
 
-Permisos: Matriz de acceso que cubre:
+## ⚙️ Instalación y Configuración
 
-Usuarios: CRUD completo.
+1.  **Clonar repositorio:**
+    ```bash
+    git clone [https://github.com/CSMTechLat/gestion-tiendas.git](https://github.com/CSMTechLat/gestion-tiendas.git)
+    ```
+2.  **Base de Datos:** * Asegúrate de tener **PostgreSQL** instalado.
+    * Crea la base de datos y ejecuta los scripts de migración.
+3.  **Configuración de Visual Studio:**
+    * Abrir el archivo `.slnx`.
+    * Restaurar paquetes NuGet.
+    * Configurar la cadena de conexión en el archivo de configuración correspondiente.
 
-Ventas: Crear, leer y cancelar.
-
-Inventarios: Reportes y gestión de stock.
-
-Productos/Precios: Control de catálogo y actualizaciones.
-
-Promociones: Gestión de ofertas especiales.
-
-Catálogo de Productos
-Productos: Información técnica (barcode, nombre, contenido).
-
-Relaciones: Clasificación por Marca, Categoría y Unidad de Medida.
-
-⚙️ Configuración del Proyecto
-Requisitos Previos
-Visual Studio 2022 con la carga de trabajo de .NET MAUI.
-
-Instancia de PostgreSQL (v14 o superior).
-
-Instalación
-Clonar el repositorio:
-
-Bash
-git clone https://github.com/CSMTechLat/gestion-tiendas.git
-Configurar la base de datos:
-
-Ejecuta el script SQL incluido en /database/script.sql para crear las tablas y roles iniciales.
-
-Configurar Connection String:
-
-Actualiza el archivo appsettings.json o tu clase de configuración con tus credenciales de PostgreSQL.
-
-Ejecutar:
-
-Abre el archivo .slnx o .sln en Visual Studio y presiona F5.
-
-📊 Módulo de Reportes
-El sistema genera estadísticas detalladas para la toma de decisiones:
-
-Ventas diarias/mensuales.
-
-Productos más vendidos.
-
-Auditoría de cambios de precios.
-
-Niveles de stock crítico (reorden).
-
-Desarrollado por [Tu Nombre/Organización] - 2026
-
-Punto d venta para abarrotes.
-- Aplicación de Escritorio.
-- C#,
-- POSTGRES SQL
-- multiusuarios.
-- maui.
-- 
-
-
--Venta de mayoreo y menudeo.
--Registro de entrada y salida de productos.
--Notas de venta.
--Control de inventarios.
--Catálogos de precios.
--Cambio de precios de productos.
--Logística.
--Reportes.
--Impresión de tickets.
+---
+ desarrollado por **CSMTechLat** - 2026
 
 
 ````
