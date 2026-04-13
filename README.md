@@ -147,5 +147,38 @@ BD:
 -contenido ->5
 -
 
+--Stock--
+-id
+-fk_producto
+-stock
+-stockMin
+-stockMax
+
+--Categorias--
+-id
+-nombre_categoria
+
+--promociones--
+-id
+-nombre_promocion
+-fk_producto
+-descuento
+-cantidad_min
+-fecha_cad
+
+--Ventas--
+-id
+-fecha
+-monto_total
+-total_productos
+-fk_usuario
+
+
+--Venta_detalle--
+-fk_venta
+-fk_producto
+-cantidad
+-precio
+
 
 ````
