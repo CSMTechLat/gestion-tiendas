@@ -145,6 +145,7 @@ BD:
 -fk_categoria ->Refresco
 -fk_unidad ->Lt
 -contenido ->5
+-precio
 -
 
 --Stock--
@@ -160,11 +161,21 @@ BD:
 
 --promociones--
 -id
--nombre_promocion
--fk_producto
--descuento
--cantidad_min
+-fk_tipo_promocion
+-porcentaje
+-cantidad_promocion_min
+-cantidad_pago
 -fecha_cad
+-isEnabled
+
+--tipo_promocion--
+-id
+-nombre_pomocion
+
+--Promociones_producto--
+-id
+-fk_producto
+-fk_promocion
 
 --Ventas--
 -id
@@ -177,8 +188,9 @@ BD:
 --Venta_detalle--
 -fk_venta
 -fk_producto
--cantidad
--precio
+-fk_promocion
+-costo
+-descuento_aplicado
 
 
 ````
