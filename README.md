@@ -146,7 +146,10 @@ BD:
 -fk_unidad ->Lt
 -contenido ->5
 -precio
--
+
+--catalogo_unidad_media--
+-id
+-unidad_medida
 
 --Stock--
 -id
@@ -184,13 +187,22 @@ BD:
 -total_productos
 -fk_usuario
 
-
 --Venta_detalle--
 -fk_venta
 -fk_producto
 -fk_promocion
 -costo
 -descuento_aplicado
+
+--compras--
+-id
+
+
+--detalle_compra--
+-fk_compra
+-fk_producto
+
+
 
 
 ````
